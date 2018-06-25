@@ -1,0 +1,8 @@
+.docker-compose.yml.swp
+
+local_files/matomo/*
+!local_files/matomo/.gitkeep
+
+local_files/matomo_database/*
+!local_files/matomo_database/.gitkeep
+

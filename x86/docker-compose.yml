@@ -1,0 +1,66 @@
+version: '3.6'
+
+services:
+
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - type: volume
+        source: matomo-app
+        target: /matomo
+      - type: bind
+        source: ./matomo.conf
+        target: /etc/nginx/conf.d/default.conf 
+    networks:
+      - matomo-network
+    depends_on:
+      - database
+      - matomo
+
+  matomo:
+    image: luongbui/matomo:3.5.1
+    volumes:
+      - type: volume
+        source: matomo-app
+        target: /var/www/html/matomo 
+    networks:
+      - matomo-network
+    depends_on:
+      - database
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+    ports:
+      - '9090:80'
+    networks:
+      - matomo-network 
+    depends_on:
+      - database
+      - matomo
+
+  database:
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: matomo_db
+      MYSQL_USER: matomo
+      MYSQL_PASSWORD: matomo
+    volumes:
+      - ./matomo_database:/var/lib/mysql
+    networks:
+      - matomo-network
+
+networks:
+  matomo-network:
+    driver: bridge
+
+volumes:
+  matomo-app:
+
