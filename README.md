@@ -4,11 +4,7 @@ This is a docker image to run [Matomo](https://matomo.org/).
 
 ## How to run with docker-compose
 
-Download Matomo code and unzip into: `local_files/matomo/`.
-That folder is shared between nginx service and php service.
-Please use that folder as root folder and don't use the `piwik` folder that is inside the zip file.
-
-Set the following environment variables:
+In the docker-compose file, the following environment variables has default values:
 - `MYSQL_ROOT_PASSWORD`
 - `MYSQL_DATABASE`
 - `MYSQL_USER`
@@ -16,10 +12,12 @@ Set the following environment variables:
 
 Run from the root folder:
 ```
-docker-compose -f x86/docker-compose.yml --project-director ./local_files up
+docker-compose -f x86/docker-compose.yml --project-director ./project_dir up --remove-orphans
 ```
 
-Open matomo via browser.
-At the step to setup the databse, as server name, use `database` or whatever it is set in the `docker-compose.yml` as database service.
-Check also via `phpmyadmin`.
+The default address is [http://localhost:8080](http://localhost:8080/)
+
+At the step to setup the database, as server name, use `matomo_database` or whatever it is set in the `docker-compose.yml` as database service.
+
+There is also a `phpmyadmin` service to check the database at [http://localhost:9090](http://localhost:9090/)
 
