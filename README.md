@@ -1,6 +1,6 @@
-## What this docker image is for?
+## What is this for?
 
-This is a docker image to run [Matomo](https://matomo.org/).
+This is for runnning [Matomo](https://matomo.org/) to test locally.
 
 ## How to run with docker-compose
 
