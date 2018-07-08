@@ -59,22 +59,6 @@ services:
       - matomo_database
       - matomo
 
-  matomo_database:
-    image: mysql:5.7.22
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: matomo_db
-      MYSQL_USER: matomo
-      MYSQL_PASSWORD: matomo
-    volumes:
-      - type: volume
-        source: matomo-database
-        target: /var/lib/mysql 
-    networks:
-      - matomo-network
-
 networks:
   matomo-network:
     driver: bridge
