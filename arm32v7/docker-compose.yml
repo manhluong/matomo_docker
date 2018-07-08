@@ -3,7 +3,7 @@ version: '3.6'
 services:
 
   web:
-    image: nginx:latest
+    image: arm32v7/nginx:latest
     ports:
       - "8080:80"
     volumes:
@@ -20,7 +20,7 @@ services:
       - matomo
 
   matomo:
-    image: luongbui/matomo:3.5.1
+    image: luongbui/arm32v7-matomo:3.5.1
     volumes:
       - type: volume
         source: matomo-app
@@ -31,7 +31,7 @@ services:
       - matomo_database
 
   matomo_database:
-    image: mysql:5.7.22
+    image: hypriot/rpi-mysql:latest
     ports:
       - "3306:3306"
     environment:
@@ -47,7 +47,7 @@ services:
       - matomo-network
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: ebspace/armhf-phpmyadmin
     environment:
       PMA_HOST: matomo_database
       PMA_PORT: 3306
