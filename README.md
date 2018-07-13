@@ -10,9 +10,11 @@ In the docker-compose file, the following environment variables has default valu
 - `MYSQL_USER`
 - `MYSQL_PASSWORD`
 
+There is also a `.env` file in the root folder.
+
 Run from the root folder:
 ```
-docker-compose -f x86/docker-compose.yml --project-director ./project_dir up --remove-orphans
+docker-compose -f x86/docker-compose.yml --project-director ./matomo up --remove-orphans
 ```
 
 The default address is [http://localhost:8080](http://localhost:8080/)
